@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Classificador de Emails</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Classificador de Emails 📧</h1>
+        
+        <form action="/processar" method="POST" enctype="multipart/form-data">
+            <label for="email_texto">Cole aqui o texto do email:</label><br>
+            <textarea name="email_texto" rows="10" cols="60" placeholder="Ex: Olá, gostaria de saber o status do meu pedido..."></textarea><br><br>
+
+            <label for="email_arquivo">Ou envie um arquivo (.txt ou .pdf):</label><br>
+            <input type="file" name="email_arquivo"><br><br>
+
+            <button type="submit">Analisar Email</button>
+        </form>
+
+        {% if resultado %}
+            <div class="resultado">
+                <h3>Resultado:</h3>
+                <p>Categoria: {{ resultado.categoria }}</p>
+                <p>Resposta sugerida: {{ resultado.resposta }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
